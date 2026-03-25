@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="css/style_2.css" rel="stylesheet">
+    <title>Veltris.com</title>
+</head>
+<body>
+
+    <!--top sticky bar-->
+    <div class="top-banner" id="topBanner">
+  <div class="banner-content">
+    <p>
+      Find out if your micro-industry is 
+      <strong>AI-ready in 2026</strong> — take the free 5-minute Vertical AI Assessment
+    </p>
+    
+    <div class="banner-actions">
+      <a href="#" class="banner-btn">Take the Assessment →</a>
+      
+    </div>
+  </div>
+</div>
+<!--top sticky bar close-->
+
+
+<!--navbar-->
+<header class="navbar" id="navbar">
+  <div class="nav-container">
+
+    <!-- Logo -->
+    <div class="logo">
+      <img src="Img/Logo/Logo_blue.svg" alt="Logo">
+    </div>
+
+    <!-- Menu -->
+    <nav class="nav-menu" id="navMenu">
+      <a href="#" class="active">Work</a>
+      <a href="#">AI Solutions</a>
+      <a href="#">How We Work</a>
+
+      <!-- Dropdown -->
+      <div class="dropdown">
+        <a href="#">Industries ▾</a>
+        <div class="dropdown-menu">
+          <a href="#">Healthcare</a>
+          <a href="#">Finance</a>
+          <a href="#">Retail</a>
+        </div>
+      </div>
+
+      <!-- Dropdown -->
+      <div class="dropdown">
+        <a href="#">Insights ▾</a>
+        <div class="dropdown-menu">
+          <a href="#">Blogs</a>
+          <a href="#">Case Studies</a>
+        </div>
+      </div>
+
+      <a href="#">About</a>
+    </nav>
+
+    <!-- Right -->
+    <div class="nav-right">
+      <a href="#" class="nav-btn">Talk to an Expert</a>
+      <div class="hamburger" onclick="toggleMenu()">☰</div>
+    </div>
+
+  </div>
+</header>
+<!--navbar close-->
+
+
+<!--hero banner-->
+<section class="hero">
+  <div class="hero-slider" id="slider">
+
+    <!-- Slide 1 (Video) -->
+    <div class="slide active">
+      <video autoplay muted loop playsinline>
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+      </video>
+
+      <div class="overlay">
+        <h1 class="animate">We turn complexity into <span>AI that works.</span></h1>
+        <p class="animate">Production-ready AI solutions in weeks.</p>
+        <a href="#" class="btn animate">Get Started</a>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide">
+      <img src="https://picsum.photos/1200/600?2">
+      <div class="overlay">
+        <h1 class="animate">Smart Automation for Business</h1>
+        <p class="animate">Save time. Scale faster.</p>
+        <a href="#" class="btn animate">Explore</a>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide">
+      <img src="https://picsum.photos/1200/600?3">
+      <div class="overlay">
+        <h1 class="animate">Industry-Specific AI Solutions</h1>
+        <p class="animate">No generic tools. Only real results.</p>
+        <a href="#" class="btn animate">Learn More</a>
+      </div>
+    </div>
+
+    <!-- Arrows 
+    <div class="prev">&#10094;</div>
+    <div class="next">&#10095;</div>-->
+
+    <!-- Dots -->
+    <div class="dots" id="dots"></div>
+
+  </div>
+</section>
+<!--hero banner close-->
+
+    
+<!--top sticky bar-->
+<script>
+function closeBanner() {
+  document.getElementById("topBanner").style.display = "none";
+}
+</script>
+<!--top sticky bar-->
+
+
+<!--sticky navbar-->
+<script>
+function toggleMenu() {
+  document.getElementById("navMenu").classList.toggle("active");
+}
+
+/* Sticky shadow on scroll */
+window.addEventListener("scroll", function() {
+  const navbar = document.getElementById("navbar");
+  navbar.classList.toggle("scrolled", window.scrollY > 10);
+});
+</script>
+<!--sticky navbar-->
+
+<!--Hero banner-->
+<script>
+let index = 0;
+const slides = document.querySelectorAll(".slide");
+const next = document.querySelector(".next");
+const prev = document.querySelector(".prev");
+const dotsContainer = document.getElementById("dots");
+
+/* Create dots */
+slides.forEach((_, i) => {
+  let dot = document.createElement("span");
+  dot.onclick = () => showSlide(i);
+  dotsContainer.appendChild(dot);
+});
+
+const dots = dotsContainer.querySelectorAll("span");
+
+function showSlide(i) {
+  slides.forEach(s => s.classList.remove("active"));
+  dots.forEach(d => d.classList.remove("active"));
+
+  slides[i].classList.add("active");
+  dots[i].classList.add("active");
+
+  index = i;
+}
+
+function nextSlide() {
+  index = (index + 1) % slides.length;
+  showSlide(index);
+}
+
+function prevSlideFunc() {
+  index = (index - 1 + slides.length) % slides.length;
+  showSlide(index);
+}
+
+next.onclick = nextSlide;
+prev.onclick = prevSlideFunc;
+
+/* Auto slide */
+setInterval(nextSlide, 5000);
+
+/* Init */
+showSlide(0);
+
+/* Swipe Support */
+let startX = 0;
+
+document.getElementById("slider").addEventListener("touchstart", e => {
+  startX = e.touches[0].clientX;
+});
+
+document.getElementById("slider").addEventListener("touchend", e => {
+  let endX = e.changedTouches[0].clientX;
+
+  if (startX > endX + 50) nextSlide();
+  if (startX < endX - 50) prevSlideFunc();
+});
+</script>
+<!--Hero banner-->
+
+
+</body>
+</html>
